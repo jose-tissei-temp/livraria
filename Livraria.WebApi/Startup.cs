@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using Livraria.CrossCutting.IoC;
+using Livraria.CrossCutting.IoC.Container;
+using Livraria.CrossCutting.IoC.Registros;
+using Livraria.Infra.IoC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace Livraria.WebApi
 {
@@ -20,11 +19,15 @@ namespace Livraria.WebApi
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        // This method gets called by the runtime. Use this method to add services to the servicesContainer.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper();
             services.AddMvc();
             services.AddCors();
+            services.AddScoped(typeof(IRegistroContainer), typeof(RegistroDados));
+
+            new ServicesContainer(services).CarregarRegistros();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

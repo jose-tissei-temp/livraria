@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Livraria.Aplicacao.Services;
+using Livraria.Aplicacao.ViewModels;
+using Livraria.Dominio.Dados;
+using Livraria.Dominio.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Livraria.WebApi.Controllers
@@ -9,14 +13,17 @@ namespace Livraria.WebApi.Controllers
     [Route("api/[controller]")]
     public class LivrosController : Controller
     {
-        // GET api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly ILivrosService servico;
+
+        public LivrosController(ILivrosService servico)
         {
-            return new [] {
-                "Harry Potter e a Pedra Filosofal",
-                "O Hobbit"
-            };
+            this.servico = servico;
+        }
+
+        [HttpGet]
+        public IEnumerable<LivroViewModel> Get()
+        {
+            return servico.ObterTodos();
         }
 
         // GET api/values/5

@@ -1,0 +1,24 @@
+<div>
+    <div>
+      <mat-form-field>
+        <input matInput (keyup)="filtrar($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+    </div>
+
+
+    <mat-table #table [dataSource]="livros">
+
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+        <mat-cell *matCellDef="let livro"> {{livro.id}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="titulo">
+        <mat-header-cell *matHeaderCellDef> Titulo </mat-header-cell>
+        <mat-cell *matCellDef="let livro"> {{livro.titulo}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="colunasExibidas"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: colunasExibidas;"></mat-row>
+    </mat-table>
+  </div>

@@ -11,7 +11,7 @@ export class LivrosService {
   constructor(private http: Http) {
   }
 
-  obterLivros(): Observable<string[]> {
+  obterLivros(): Observable<ViewModels.LivroViewModel[]> {
     return this.http.get(LivrosService.UrlLivros).map((response: Response) => response.json());
   }
 }

@@ -1,16 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { LivrosService } from './livros/livros.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
   livros: string[];
-  constructor() {
-    this.livros = [
-      "Harry Potter e a Pedra Filosofal",
-      "O Hobbit"
-    ];
+  subscription: Subscription;
+  constructor(private service: LivrosService) {
+    this.livros = [];
+  }
+
+  ngOnInit() {
+    this.subscription = this.service.obterLivros().subscribe(valores => this.livros = valores);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

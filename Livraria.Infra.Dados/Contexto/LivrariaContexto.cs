@@ -2,7 +2,6 @@
 using System.IO;
 using System.Reflection;
 using Livraria.Dominio.Models;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 

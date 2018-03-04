@@ -7,10 +7,9 @@ namespace Livraria.CrossCutting.IoC.Container
 {
     public static class ServicesContainerExtensions
     {
-        public static void CarregarRegistros(this IServicesContainer services)
+        public static void CarregarRegistros(this IServicesContainer services, Type[] tipos)
         {
-            var registros = Assembly.GetExecutingAssembly()
-                .GetTypes()
+            var registros = tipos                
                 .Where(type => 
                     type.IsClass
                     && !type.IsAbstract 
@@ -23,6 +22,11 @@ namespace Livraria.CrossCutting.IoC.Container
             {
                 registro.Registrar(services);
             }
+        }
+
+        public static void CarregarRegistros(this IServicesContainer services)
+        {
+            services.CarregarRegistros(Assembly.GetExecutingAssembly().GetTypes());
         }
     }
 }

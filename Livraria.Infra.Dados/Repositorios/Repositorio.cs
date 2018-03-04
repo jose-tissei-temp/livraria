@@ -7,12 +7,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Livraria.Infra.Dados.Repositorios
 {
-    public class Repositorio<TEntidade> : IRepositorio<TEntidade> where TEntidade : class, IEntidade
+    public class Repositorio<TEntidade> : IDisposable, IRepositorio<TEntidade> where TEntidade : class, IEntidade
     {
         private readonly DbSet<TEntidade> set;
-        private readonly DbContext contexto;
+        private readonly ILivrariaContexto contexto;
 
-        public Repositorio(LivrariaContexto contexto)
+        public Repositorio(ILivrariaContexto contexto)
         {
             this.contexto = contexto;
             set = contexto.Set<TEntidade>();
@@ -46,6 +46,12 @@ namespace Livraria.Infra.Dados.Repositorios
         public int Atualizar()
         {
             return contexto.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            contexto.SaveChanges();
+            GC.SuppressFinalize(this);
         }
     }
 }

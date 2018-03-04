@@ -10,7 +10,9 @@ namespace Livraria.CrossCutting.IoC.Registros
         public void Registrar(IServicesContainer servicesContainer)
         {
             servicesContainer.AddDbContext<LivrariaContexto>();
+            servicesContainer.AddScoped<ILivrariaContexto, LivrariaContexto>();
             servicesContainer.AddScoped(typeof(IRepositorio<>), typeof(Repositorio<>));
+            servicesContainer.AddScoped<ILivros, Livros>();
         }
     }
 }

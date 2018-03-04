@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Livraria.Infra.Dados.Contexto
 {
-    public class LivrariaContexto : DbContext
+    public class LivrariaContexto : DbContext, ILivrariaContexto
     {
         private readonly string environmentName;
 
@@ -21,14 +21,19 @@ namespace Livraria.Infra.Dados.Contexto
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyAllAssemblyConfigurations(Assembly.GetExecutingAssembly());
+            modelBuilder.ApplyAllAssemblyConfigurations(Assembly.GetExecutingAssembly().GetTypes());
 
             base.OnModelCreating(modelBuilder);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            
+            if (environmentName == "Tests")
+            {
+                optionsBuilder.UseSqlServer("(localdb)\testes");
+                return;
+            }
+
             var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile($"appsettings.json")

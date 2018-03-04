@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Livraria.Aplicacao.Services;
@@ -26,29 +27,28 @@ namespace Livraria.WebApi.Controllers
             return servico.ObterTodos();
         }
 
-        // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public LivroViewModel Get(Guid id)
         {
-            return "value";
+            return servico.Obter(id);
         }
 
-        // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]LivroViewModel livro)
         {
+            servico.Salvar(livro);
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [HttpPut]
+        public void Put([FromBody]LivroViewModel value)
         {
+            servico.Atualizar(value);
         }
 
-        // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
+            servico.Remover(id);
         }
     }
 }

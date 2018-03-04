@@ -1,0 +1,47 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Livros</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="tabela-container">
+      <div class="tabela-header">
+        <mat-form-field>
+          <input matInput (keyup)="filtrar($event.target.value)" placeholder="Filtro">
+        </mat-form-field>
+      </div>
+
+      <mat-table #table [dataSource]="livros">
+
+        <ng-container matColumnDef="titulo">
+          <mat-header-cell *matHeaderCellDef> Título </mat-header-cell>
+          <mat-cell *matCellDef="let livro"> {{livro.titulo}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="autor">
+            <mat-header-cell *matHeaderCellDef> Autor </mat-header-cell>
+            <mat-cell *matCellDef="let livro"> {{livro.autor}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="estoque">
+              <mat-header-cell *matHeaderCellDef> Estoque </mat-header-cell>
+              <mat-cell *matCellDef="let livro"> {{livro.estoque}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="acoes">
+              <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
+              <mat-cell *matCellDef="let livro">
+                  <a routerLink="/livros/{{livro.id}}" mat-mini-fab color="accent">
+                    <mat-icon>edit</mat-icon>
+                  </a>
+                  <a (click)="openDialog(livro)" mat-mini-fab color="warn">
+                    <mat-icon>delete</mat-icon>
+                  </a>
+              </mat-cell>
+          </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
+  </mat-card-content>
+</mat-card>

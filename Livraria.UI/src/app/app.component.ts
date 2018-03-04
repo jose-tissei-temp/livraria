@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy, ViewContainerRef } from '@angular/core';
-import { LivrosService } from './livros/livros.service';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({

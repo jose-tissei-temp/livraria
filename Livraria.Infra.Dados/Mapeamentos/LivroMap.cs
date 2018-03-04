@@ -10,6 +10,8 @@ namespace Livraria.Infra.Dados.Mapeamentos
         {
             builder.Property(m => m.Id);
             builder.Property(c => c.Titulo).HasMaxLength(100).IsRequired();
+            builder.Property(c => c.Autor).HasMaxLength(100).IsRequired();
+            builder.Property(c => c.Estoque).IsRequired();
         }
     }
 }

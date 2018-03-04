@@ -6,6 +6,10 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Livraria.Infra.IoC
 {
+    // A ideia aqui é que como o aspnet core vem com seu proprio
+    // container de injeção de dependências, ao desacoplar
+    // sua implementação se torna mais facil substitui-lo
+    // posteriormente caso alguma limitação seja encontrada
     public class ServicesContainer : IServicesContainer
     {
         private readonly IServiceCollection services;

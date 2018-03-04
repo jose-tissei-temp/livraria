@@ -25,6 +25,12 @@ namespace Livraria.Infra.Dados.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Autor")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.Property<long>("Estoque");
+
                     b.Property<string>("Titulo")
                         .IsRequired()
                         .HasMaxLength(100);

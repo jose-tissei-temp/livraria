@@ -2,18 +2,21 @@
 using System.Linq;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Livraria.Infra.Dados.Contexto
 {
     public static class ModelBuilderExtensions
     {
-        public static void ApplyAllAssemblyConfigurations(this ModelBuilder modelBuilder, Assembly assembly)
+        public static void ApplyAllAssemblyConfigurations<T>(this IInfrastructure<T> modelBuilder, Type[] tipos)
         {
-            var methodInfo = typeof(ModelBuilder).GetMethod(
+            var methodInfo = modelBuilder.GetType().GetMethod(
                 nameof(ModelBuilder.ApplyConfiguration),
                 BindingFlags.Instance | BindingFlags.Public
             );
-            var mapeamentos = assembly.GetTypes().Where(ClasseImplementaEntityConfiguration);
+            var mapeamentos = tipos.Where(ClasseImplementaEntityConfiguration);
 
             foreach (var mapeamento in mapeamentos)
             {

@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using Livraria.CrossCutting.IoC;
 using Livraria.CrossCutting.IoC.Container;
-using Livraria.CrossCutting.IoC.Registros;
 using Livraria.Infra.IoC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,7 +23,6 @@ namespace Livraria.WebApi
             services.AddAutoMapper();
             services.AddMvc();
             services.AddCors();
-            services.AddScoped(typeof(IRegistroContainer), typeof(RegistroDados));
 
             new ServicesContainer(services).CarregarRegistros();
         }

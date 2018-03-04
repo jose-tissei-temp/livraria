@@ -1,13 +1,12 @@
-example-container {
+.tabela-container {
   display: flex;
   flex-direction: column;
-  min-width: 300px;
 }
 
-.example-header {
+/* .tabela-header {
   min-height: 64px;
   padding: 8px 24px 0;
-}
+} */
 
 .mat-form-field {
   font-size: 14px;
@@ -16,5 +15,12 @@ example-container {
 
 .mat-table {
   overflow: auto;
-  max-height: 500px;
+}
+
+.mat-icon {
+  color: white;
+}
+
+.mat-cell {
+  padding: 6px 6px;
 }

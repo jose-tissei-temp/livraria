@@ -1,0 +1,29 @@
+<mat-card>
+  <form (ngSubmit)="onSubmit()" #livroForm="ngForm">
+    <mat-card-header>
+      <mat-card-title>{{ model.titulo ? "Novo Livro - " + model.titulo : "Novo Livro"}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="formulario-container">
+          <input [(ngModel)]="model.id"  name="Id" type="hidden">
+
+          <mat-form-field>
+            <input matInput [(ngModel)]="model.titulo" placeholder="Título" name="Titulo" required>
+            <mat-hint align="end">{{input.value?.length || 0}}/100</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput [(ngModel)]="model.autor" #input maxlength="100" placeholder="Autor" name="Autor" required>
+            <mat-hint align="end">{{input.value?.length || 0}}/100</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput [(ngModel)]="model.estoque" type="number" placeholder="Estoque"  name="Estoque" required>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button type="submit" [disabled]="!livroForm.form.valid">Salvar</button>
+      </mat-card-actions>
+    </form>
+</mat-card>

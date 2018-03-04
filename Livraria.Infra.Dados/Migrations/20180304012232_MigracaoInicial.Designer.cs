@@ -11,7 +11,7 @@ using System;
 namespace Livraria.Infra.Dados.Migrations
 {
     [DbContext(typeof(LivrariaContexto))]
-    [Migration("20180303172404_MigracaoInicial")]
+    [Migration("20180304012232_MigracaoInicial")]
     partial class MigracaoInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,6 +25,12 @@ namespace Livraria.Infra.Dados.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Autor")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.Property<long>("Estoque");
 
                     b.Property<string>("Titulo")
                         .IsRequired()

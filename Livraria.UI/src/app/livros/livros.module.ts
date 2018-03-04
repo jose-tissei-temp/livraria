@@ -12,6 +12,7 @@ import { LivrosService } from './livros.service';
 import { RouterModule } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { DialogModule } from '../dialog/dialog.module';
+import { FormularioEdicaoComponent } from './formulario/formulario-edicao.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,7 @@ import { DialogModule } from '../dialog/dialog.module';
     RouterModule,
     DialogModule
   ],
-  declarations: [TabelaComponent, FormularioComponent],
+  declarations: [TabelaComponent, FormularioComponent, FormularioEdicaoComponent],
   bootstrap: [],
   providers: [LivrosService]
 })

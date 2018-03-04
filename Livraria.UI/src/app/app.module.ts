@@ -15,12 +15,13 @@ import { FormularioComponent } from './livros/formulario/formulario.component';
 import { environment } from '../environments/environment';
 import { LivrosModule } from './livros/livros.module';
 import { DialogModule } from './dialog/dialog.module';
+import { FormularioEdicaoComponent } from './livros/formulario/formulario-edicao.component';
 
 const APP_ROUTES: Routes = [
   { path: '', component: TabelaComponent },
   { path: 'livros', component: TabelaComponent },
-  { path: 'livros/:id', component: FormularioComponent },
-  { path: 'livros/novo', component: FormularioComponent },
+  { path: 'livros/:id', component: FormularioEdicaoComponent },
+  { path: 'novo-livro', component: FormularioComponent },
 ];
 
 @NgModule({

@@ -34,7 +34,7 @@ export class TabelaComponent implements OnInit {
   openDialog(livro: LivroViewModel) {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '500px',
-      height: '200px',
+      height: '225px',
       data: new DialogData(livro.id, 'Deseja excluir o livro?', livro.titulo)
     });
 

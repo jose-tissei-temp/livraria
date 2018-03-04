@@ -1,6 +1,6 @@
-<h1 mat-dialog-title>Deseja excluir o livro?</h1>
+<h1 mat-dialog-title>{{data.titulo}}</h1>
 <div mat-dialog-content>
-  <p>{{data.titulo}}</p>
+  <p>{{data.mensagem}}</p>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Não</button>

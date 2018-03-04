@@ -13,9 +13,10 @@ import { TabelaComponent } from './livros/tabela/tabela.component';
 import { LivrosService } from './livros/livros.service';
 import { FormularioComponent } from './livros/formulario/formulario.component';
 import { environment } from '../environments/environment';
-import { DialogComponent } from './livros/tabela/dialog.component';
+import { LivrosModule } from './livros/livros.module';
+import { DialogModule } from './dialog/dialog.module';
 
-const appRoutes: Routes = [
+const APP_ROUTES: Routes = [
   { path: '', component: TabelaComponent },
   { path: 'livros', component: TabelaComponent },
   { path: 'livros/:id', component: FormularioComponent },
@@ -25,22 +26,18 @@ const appRoutes: Routes = [
 @NgModule({
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    HttpModule,
-    HttpClientModule,
     MaterialModule,
-    MatNativeDateModule,
-    ReactiveFormsModule,
+    LivrosModule,
+    DialogModule,
     RouterModule.forRoot(
-      appRoutes,
+      APP_ROUTES,
       { enableTracing: environment.production ? false : true  }
     )
   ],
-  entryComponents: [AppComponent, DialogComponent],
-  declarations: [AppComponent, TabelaComponent, FormularioComponent, DialogComponent],
+  entryComponents: [AppComponent],
+  declarations: [AppComponent],
   bootstrap: [AppComponent],
-  providers: [LivrosService]
+  providers: []
 })
 export class AppModule { }
 

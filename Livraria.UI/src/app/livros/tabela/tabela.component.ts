@@ -2,8 +2,8 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import {MatTableDataSource} from '@angular/material';
 import { LivrosService } from '../livros.service';
 import { Subscription } from 'rxjs/Subscription';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import { DialogComponent } from './dialog.component';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { DialogComponent, DialogData } from '../../dialog/dialog.component';
 
 @Component({
   selector: 'app-livros-tabela',
@@ -35,7 +35,7 @@ export class TabelaComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '500px',
       height: '200px',
-      data: livro
+      data: new DialogData(livro.id, 'Deseja excluir o livro?', livro.titulo)
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -27,12 +27,6 @@ namespace Livraria.Infra.Dados.Contexto
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (environmentName == "Tests")
-            {
-                optionsBuilder.UseSqlServer("(localdb)\testes");
-                return;
-            }
-
             var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile($"appsettings.json")
